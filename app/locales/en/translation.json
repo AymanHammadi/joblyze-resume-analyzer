@@ -1,0 +1,22 @@
+{
+  "app": {
+    "title": "Joblyze",
+    "description": "AI-powered resume analyzer to optimize your job applications.",
+    "welcome": {
+      "title": "Welcome to Joblyze",
+      "subtitle": "Upload your resume to get started",
+      "upload": "Upload Resume",
+      "or": "or",
+      "dropHere": "Drop your file here"
+    },
+    "navigation": {
+      "home": "Home",
+      "about": "About",
+      "contact": "Contact"
+    },
+    "settings": {
+      "language": "Language",
+      "theme": "Theme"
+    }
+  }
+}
