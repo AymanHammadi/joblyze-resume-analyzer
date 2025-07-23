@@ -8,4 +8,4 @@
 # IDE specific files
 /.idea/
 
-./ThemeShowcase.tsx
+/ThemeShowcase.tsx
