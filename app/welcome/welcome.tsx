@@ -1,6 +1,6 @@
 import logoDark from "./logo-dark.svg";
 import logoLight from "./logo-light.svg";
-
+import {Button} from "~/components/ui/button";
 export function Welcome() {
   return (
     <main className="flex items-center justify-center pt-16 pb-4">
@@ -33,8 +33,10 @@ export function Welcome() {
                     target="_blank"
                     rel="noreferrer"
                   >
+                    <Button>
                     {icon}
                     {text}
+                    </Button>
                   </a>
                 </li>
               ))}
