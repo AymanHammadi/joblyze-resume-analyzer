@@ -5,10 +5,15 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useRouteLoaderData,
 } from "react-router";
+import { I18nextProvider } from 'react-i18next';
+import { useEffect } from 'react';
 
 import type { Route } from "./+types/root";
-import "./app.css";
+import "./styles/app.css";
+import "./styles/rtl.css";
+import i18n from './i18n';
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -24,8 +29,27 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  // Set the language and direction based on i18n
+  useEffect(() => {
+    const handleLanguageChange = () => {
+      const currentLang = i18n.language;
+      document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+      document.documentElement.lang = currentLang;
+    };
+
+    // Set initial values
+    handleLanguageChange();
+
+    // Listen for language changes
+    i18n.on('languageChanged', handleLanguageChange);
+
+    return () => {
+      i18n.off('languageChanged', handleLanguageChange);
+    };
+  }, []);
+
   return (
-    <html lang="en">
+    <html lang={i18n.language || 'en'} dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -42,7 +66,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <I18nextProvider i18n={i18n}>
+      <Outlet />
+    </I18nextProvider>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
