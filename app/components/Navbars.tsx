@@ -48,10 +48,12 @@ export const DesktopActions = () => {
 
   return (
     <div className="hidden md:flex items-center gap-3">
-      <Button size="sm" className="btn-primary btn-shimmer">
-        <Zap className="w-4 h-4 mr-2" />
-        {t("actions.uploadResume")}
-      </Button>
+      <Link to="/upload">
+        <Button size="sm" className="btn-primary btn-shimmer">
+          <Zap className="w-4 h-4 mr-2" />
+          {t("actions.uploadResume")}
+        </Button>
+      </Link>
 
       <div className="flex items-center gap-3 ml-3 pl-3 border-l border-border">
         <div className="flex items-center gap-2 p-1 surface rounded-lg">
@@ -91,10 +93,12 @@ export const MobileNav = ({ navItems, isOpen, onClose }: MobileNavProps) => {
     <div className="md:hidden mt-4 pb-6 glass-effect rounded-lg">
       {/* Main Action Button - Upload Resume */}
       <div className="p-4 border-b border-border">
-        <Button size="sm" className="btn-primary w-full" onClick={onClose}>
-          <Zap className="w-4 h-4 mr-2" />
-          {t("actions.uploadResume")}
-        </Button>
+        <Link to="/upload">
+          <Button size="sm" className="btn-primary w-full" onClick={onClose}>
+            <Zap className="w-4 h-4 mr-2" />
+            {t("actions.uploadResume")}
+          </Button>
+        </Link>
       </div>
 
       {/* Navigation Links */}

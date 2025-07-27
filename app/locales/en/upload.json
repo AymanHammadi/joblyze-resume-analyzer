@@ -1,0 +1,68 @@
+{
+  "jobDetails": {
+    "title": "Job Details",
+    "subtitle": "Tell us about the position you're applying for",
+    "companyName": {
+      "label": "Company Name",
+      "placeholder": "e.g., Google, Microsoft, Apple"
+    },
+    "jobTitle": {
+      "label": "Job Title",
+      "placeholder": "e.g., Senior Software Engineer, Product Manager"
+    },
+    "jobDescription": {
+      "label": "Job Description",
+      "placeholder": "Paste the complete job description here including requirements, responsibilities, and qualifications...",
+      "hint": "The more detailed the job description, the better our analysis will be."
+    }
+  },
+  "resumeUpload": {
+    "title": "Resume Upload",
+    "subtitle": "Upload your resume in PDF format",
+    "dropzone": {
+      "title": "Upload your resume",
+      "titleActive": "Drop your resume here",
+      "description": "Drag and drop your PDF file here, or click to browse",
+      "fileTypes": "PDF files only • Max 10MB",
+      "chooseFile": "Choose File"
+    },
+    "fileInfo": {
+      "pdf": "PDF"
+    },
+    "errors": {
+      "fileTooBig": "File size must be less than 10MB",
+      "invalidType": "Only PDF files are allowed",
+      "invalidFile": "Invalid file. Please try again."
+    }
+  },
+  "submitButton": {
+    "analyze": "Analyze Resume",
+    "analyzing": "Analyzing..."
+  },
+  "progress": {
+    "uploading": "Uploading resume...",
+    "converting": "Converting PDF to image...",
+    "uploadingImage": "Uploading image for analysis...",
+    "analyzing": "Analyzing resume with AI...",
+    "saving": "Saving analysis results...",
+    "complete": "Analysis complete!"
+  },
+  "validation": {
+    "fillAllFields": "Please fill in all fields"
+  },
+  "errors": {
+    "uploadFailed": "Failed to upload resume file",
+    "conversionFailed": "Failed to convert PDF to image",
+    "imageUploadFailed": "Failed to upload image file",
+    "analysisFailed": "Failed to get AI analysis",
+    "generalError": "Analysis failed"
+  },
+  "analysis": {
+    "processing": {
+      "title": "Analyzing Your Resume"
+    }
+  },
+  "console": {
+    "formSubmitted": "Form submitted successfully!"
+  }
+}

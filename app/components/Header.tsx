@@ -8,13 +8,7 @@ import {
   MobileNav,
 } from "./Navbars";
 
-const navItems = [
-  { key: "home", href: "/" },
-  { key: "features", href: "/features" },
-  { key: "pricing", href: "/pricing" },
-  { key: "about", href: "/about" },
-  { key: "contact", href: "/contact" },
-];
+const navItems = [{ key: "home", href: "/" }];
 
 export function Header() {
   const { t } = useTranslation("header");

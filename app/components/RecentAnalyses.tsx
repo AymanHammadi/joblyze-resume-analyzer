@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { Button } from "./ui/button";
 import { ResumeCard } from "./ResumeCard";
 import { FileText } from "lucide-react";
-import { resumes } from "../../constants/index";
+import { resumes } from "../constants/index";
 
 export function RecentAnalyses() {
   const { t } = useTranslation("recentAnalyses");
