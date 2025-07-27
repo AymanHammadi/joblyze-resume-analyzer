@@ -47,14 +47,14 @@ app/
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js  
 - A Puter.com account (free at [puter.com](https://puter.com))
 
 ### Installation
 
 1. **Clone the repository**
    ```bash
-   git clone 
+   git clone https://github.com/AymanHammadi/joblyze-resume-analyzer.git
    cd ai-resume-analyzer
    ```
 
