@@ -1,12 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import Logo from "./Logo";
-import {
-  DesktopActions,
-  DesktopNav,
-  MobileMenuButton,
-  MobileNav,
-} from "./Navbars";
+import { DesktopActions, MobileMenuButton, MobileNav } from "./Navbars";
 
 const navItems = [{ key: "home", href: "/" }];
 
@@ -21,9 +16,6 @@ export function Header() {
           {/*  Logo */}
           <Logo />
 
-          {/*  Desktop Navigation */}
-          <DesktopNav navItems={navItems} />
-
           {/*  Actions */}
           <DesktopActions />
 
@@ -36,7 +28,6 @@ export function Header() {
 
         {/*  Mobile Navigation */}
         <MobileNav
-          navItems={navItems}
           isOpen={isMobileMenuOpen}
           onClose={() => setIsMobileMenuOpen(false)}
         />

@@ -81,15 +81,6 @@ export const ResumeUpload: React.FC<ResumeUploadProps> = ({
         >
           <input {...getInputProps()} />
 
-          {/* Background decoration */}
-          <div className="absolute inset-0 rounded-lg opacity-5">
-            <img
-              src="/images/pdf.png"
-              alt=""
-              className="w-full h-full object-contain"
-            />
-          </div>
-
           <div className="relative z-10 space-y-4">
             <div className="mx-auto w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
               <Upload className="w-8 h-8 text-primary" />

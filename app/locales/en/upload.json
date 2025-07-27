@@ -1,4 +1,8 @@
 {
+  "meta": {
+    "title": "Jobalyze - Upload Resume",
+    "description": "Upload your resume and get AI-powered analysis to improve your job application chances."
+  },
   "jobDetails": {
     "title": "Job Details",
     "subtitle": "Tell us about the position you're applying for",

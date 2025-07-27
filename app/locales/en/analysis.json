@@ -1,33 +1,69 @@
 {
   "title": "Resume Analysis Results",
-  "subtitle": "Analysis ID",
+  "subtitle": "Here's your detailed resume analysis with personalized recommendations",
   "actions": {
-    "backToUpload": "Back to Upload",
+    "backToUpload": "Back to Home",
     "refresh": "Refresh",
     "downloadReport": "Download Report"
   },
-  "jobInfo": {
-    "title": "Job Information",
-    "company": "Company",
-    "position": "Position",
-    "overallScore": "Overall Score",
-    "notSpecified": "Not specified"
-  },
-  "resumePreview": {
-    "title": "Resume Preview",
-    "noPreview": "No preview available"
-  },
-  "rawData": {
-    "title": "Raw Analysis Data (Development View)"
-  },
   "loading": {
-    "text": "Loading analysis..."
+    "title": "Looking for your resume...",
+    "text": "Please wait while we retrieve your analysis..."
   },
   "errors": {
-    "title": "Error Loading Analysis",
+    "title": "Analysis Error",
     "noId": "No analysis ID provided",
     "notFound": "Analysis not found",
     "loadFailed": "Failed to load analysis",
-    "tryAgain": "Try Again"
+    "tryAgain": "Try Again",
+    "noFeedback": "No Analysis Data Found",
+    "noFeedbackDesc": "The analysis data could not be loaded. Please try analyzing your resume again."
+  },
+  "scoreOverview": {
+    "title": "Overall Resume Score",
+    "analyzedFor": "Analyzed for:",
+    "scoreStatus": {
+      "excellent": "Excellent Match",
+      "good": "Good Match",
+      "fair": "Fair Match",
+      "needsImprovement": "Needs Improvement"
+    }
+  },
+  "feedback": {
+    "strengthsFound": "Strengths Found",
+    "areasToImprove": "Areas to Improve",
+    "overallScore": "Overall Score",
+    "categoryBreakdown": "Category Breakdown"
+  },
+  "categories": {
+    "ats": {
+      "title": "ATS Compatibility",
+      "description": "How well your resume works with applicant tracking systems"
+    },
+    "content": {
+      "title": "Content Quality",
+      "description": "Relevance and depth of your experience and achievements"
+    },
+    "skills": {
+      "title": "Skills Alignment",
+      "description": "How well your skills match the job requirements"
+    },
+    "structure": {
+      "title": "Structure & Format",
+      "description": "Organization, layout, and visual presentation"
+    },
+    "toneAndStyle": {
+      "title": "Tone & Style",
+      "description": "Professional language and communication style"
+    }
+  },
+  "resumePreview": {
+    "title": "Resume Preview",
+    "noPreview": "Resume preview not available",
+    "noPreviewDescription": "The analysis was completed but the preview couldn't be generated",
+    "download": "Download",
+    "clickToOpen": "Click to open full view",
+    "pdfAvailable": "PDF Resume Available",
+    "clickToOpenPdf": "Click to open PDF in new tab"
   }
 }

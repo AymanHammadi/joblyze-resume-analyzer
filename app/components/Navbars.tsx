@@ -5,43 +5,15 @@ import { LanguageSwitcher } from "./LanguageSwitcher";
 import { Button } from "./ui/button";
 import { Link } from "react-router";
 
-interface NavItem {
-  key: string;
-  href: string;
-}
-
-interface DesktopNavProps {
-  navItems: NavItem[];
-}
-
 interface MobileMenuButtonProps {
   isOpen: boolean;
   onToggle: () => void;
 }
 
 interface MobileNavProps {
-  navItems: NavItem[];
   isOpen: boolean;
   onClose: () => void;
 }
-
-export const DesktopNav = ({ navItems }: DesktopNavProps) => {
-  const { t } = useTranslation("header");
-
-  return (
-    <nav className="hidden md:flex items-center gap-1 glass-effect rounded-lg px-2 py-1">
-      {navItems.map((item) => (
-        <Link
-          key={item.key}
-          to={item.href}
-          className="nav-link px-2 py-2 rounded-md"
-        >
-          {t(`navigation.${item.key}`)}
-        </Link>
-      ))}
-    </nav>
-  );
-};
 
 export const DesktopActions = () => {
   const { t } = useTranslation("header");
@@ -84,7 +56,7 @@ export const MobileMenuButton = ({
   );
 };
 
-export const MobileNav = ({ navItems, isOpen, onClose }: MobileNavProps) => {
+export const MobileNav = ({ isOpen, onClose }: MobileNavProps) => {
   const { t } = useTranslation("header");
 
   if (!isOpen) return null;
@@ -103,18 +75,7 @@ export const MobileNav = ({ navItems, isOpen, onClose }: MobileNavProps) => {
 
       {/* Navigation Links */}
       <nav className="p-4">
-        <div className="flex flex-col gap-1">
-          {navItems.map((item) => (
-            <Link
-              key={item.key}
-              to={item.href}
-              className="nav-link py-3 px-4 rounded-md"
-              onClick={onClose}
-            >
-              {t(`navigation.${item.key}`)}
-            </Link>
-          ))}
-        </div>
+        <div className="flex flex-col gap-1"></div>
       </nav>
 
       {/* Theme and Language Controls */}

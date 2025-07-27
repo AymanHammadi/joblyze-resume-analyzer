@@ -2,8 +2,8 @@ import type { Route } from "./+types/home";
 import { useTranslation } from "react-i18next";
 import i18n from "@/i18n";
 import { Header } from "@/components/Header";
-import { HeroSection } from "@/components/HeroSection";
-import { RecentAnalyses } from "@/components/RecentAnalyses";
+import { HeroSection } from "@/components/home/HeroSection";
+import { RecentAnalyses } from "@/components/home/RecentAnalyses";
 import { Footer } from "@/components/Footer";
 
 export function meta({}: Route.MetaArgs) {

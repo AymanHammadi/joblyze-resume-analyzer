@@ -1,10 +1,9 @@
-import { useTranslation } from 'react-i18next';
-import { Button } from "./ui/button";
+import { useTranslation } from "react-i18next";
+import { Button } from "@/components/ui/button";
 import { Upload, Sparkles } from "lucide-react";
 
 export function HeroSection() {
-  const { t } = useTranslation('hero');
-
+  const { t } = useTranslation("hero");
 
   return (
     <section className="section-xl">
@@ -16,25 +15,21 @@ export function HeroSection() {
               <Sparkles className="w-4 h-4" />
               AI-Powered Resume Analysis
             </div>
-            
-            <h1 className="heading-xl max-w-4xl mx-auto">
-              {t('title')}
-            </h1>
-            
+
+            <h1 className="heading-xl max-w-4xl mx-auto">{t("title")}</h1>
+
             <p className="subheading max-w-2xl mx-auto text-muted-foreground">
-              {t('subtitle')}
+              {t("subtitle")}
             </p>
-            
           </div>
 
           {/* Call to Action Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button size="lg" className="btn-primary cur">
               <Upload className="w-5 h-5 mr-2" />
-              {t('cta.upload')}
+              {t("cta.upload")}
             </Button>
           </div>
-
         </div>
       </div>
     </section>
