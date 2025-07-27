@@ -8,7 +8,7 @@ const Logo = () => {
   return (
     <Link to="/" className="flex items-center gap-3 group cursor-pointer">
       <div className="relative w-10 h-10 bg-gradient-to-br from-primary to-primary/80 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-        <Brain className="w-6 h-6 text-primary-foreground relative z-10" />
+        <img src="/Joblyz.svg" alt="joblyz logo" />
       </div>
       <div className="flex flex-col">
         <h1 className="text-xl font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">

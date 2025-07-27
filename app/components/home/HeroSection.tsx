@@ -19,11 +19,6 @@ export function HeroSection() {
         <div className="text-center space-y-10">
           {/* Main Headlines */}
           <div className="space-y-6">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">
-              <Sparkles className="w-4 h-4" />
-              AI-Powered Resume Analysis
-            </div>
-
             <h1 className="heading-xl max-w-4xl mx-auto">{t("title")}</h1>
 
             <p className="subheading max-w-2xl mx-auto text-muted-foreground">

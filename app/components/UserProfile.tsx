@@ -7,7 +7,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { User, LogOut, Settings } from "lucide-react";
+import { User, LogOut, Settings, Palette, Globe } from "lucide-react";
+import { ThemeToggle } from "./ThemeToggle";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export function UserProfile() {
   const { auth } = usePuterStore();
@@ -40,19 +42,45 @@ export function UserProfile() {
           </span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-56">
+      <DropdownMenuContent align="end" className="w-64">
+        {/* User Info */}
         <div className="px-2 py-1.5 text-sm">
           <p className="text-foreground font-medium">{auth.user.username}</p>
           <p className="text-muted-foreground text-xs">
             ID: {auth.user.uuid.slice(0, 8)}...
           </p>
         </div>
+
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="cursor-pointer">
-          <Settings className="w-4 h-4 mr-2" />
-          Settings
-        </DropdownMenuItem>
+
+        {/* Settings Section */}
+        <div className="px-2 py-2">
+          <p className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wider">
+            Settings
+          </p>
+
+          {/* Language Setting */}
+          <div className="flex items-center justify-between py-2">
+            <div className="flex items-center gap-2">
+              <Globe className="w-4 h-4 text-muted-foreground" />
+              <span className="text-sm">Language</span>
+            </div>
+            <LanguageSwitcher />
+          </div>
+
+          {/* Theme Setting */}
+          <div className="flex items-center justify-between py-2">
+            <div className="flex items-center gap-2">
+              <Palette className="w-4 h-4 text-muted-foreground" />
+              <span className="text-sm">Theme</span>
+            </div>
+            <ThemeToggle />
+          </div>
+        </div>
+
         <DropdownMenuSeparator />
+
+        {/* Sign Out */}
         <DropdownMenuItem
           onClick={handleSignOut}
           className="cursor-pointer text-destructive"

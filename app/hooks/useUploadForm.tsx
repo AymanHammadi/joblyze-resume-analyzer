@@ -20,6 +20,35 @@ interface AnalysisState {
   error: string | null;
 }
 
+// UUID generation function that works across environments
+const generateUUID = (): string => {
+  // Try crypto.randomUUID first (modern browsers)
+  if (typeof crypto !== "undefined" && crypto.randomUUID) {
+    return crypto.randomUUID();
+  }
+
+  // Fallback to crypto.getRandomValues
+  if (typeof crypto !== "undefined" && crypto.getRandomValues) {
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+      /[xy]/g,
+      function (c) {
+        const r =
+          (crypto.getRandomValues(new Uint8Array(1))[0] & 15) >>
+          (c === "x" ? 0 : 2);
+        const v = c === "x" ? r : (r & 0x3) | 0x8;
+        return v.toString(16);
+      }
+    );
+  }
+
+  // Final fallback using Math.random (less secure but works everywhere)
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
+    const r = (Math.random() * 16) | 0;
+    const v = c === "x" ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  });
+};
+
 // Analysis steps configuration
 const ANALYSIS_STEPS = {
   UPLOADING: { key: "progress.uploading", progress: 20 },
@@ -190,7 +219,7 @@ export const useUploadForm = () => {
     }
 
     // Save analysis
-    const analysisId = crypto.randomUUID();
+    const analysisId = generateUUID();
     const resumeAnalysis: Resume = {
       id: analysisId,
       companyName: formData.companyName,

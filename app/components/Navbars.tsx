@@ -4,6 +4,7 @@ import { ThemeToggle } from "./ThemeToggle";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { Button } from "./ui/button";
 import { Link } from "react-router";
+import { UserProfile } from "./UserProfile";
 
 interface MobileMenuButtonProps {
   isOpen: boolean;
@@ -34,6 +35,8 @@ export const DesktopActions = () => {
           <ThemeToggle />
         </div>
       </div>
+
+      <UserProfile />
     </div>
   );
 };
@@ -63,16 +66,6 @@ export const MobileNav = ({ isOpen, onClose }: MobileNavProps) => {
 
   return (
     <div className="md:hidden mt-4 pb-6 glass-effect rounded-lg">
-      {/* Main Action Button - Upload Resume */}
-      <div className="p-4 border-b border-border">
-        <Link to="/upload">
-          <Button size="sm" className="btn-primary w-full" onClick={onClose}>
-            <Zap className="w-4 h-4 mr-2" />
-            {t("actions.uploadResume")}
-          </Button>
-        </Link>
-      </div>
-
       {/* Navigation Links */}
       <nav className="p-4">
         <div className="flex flex-col gap-1"></div>

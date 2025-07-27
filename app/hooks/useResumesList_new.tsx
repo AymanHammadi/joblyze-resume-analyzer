@@ -103,8 +103,48 @@ export const useResumesList = () => {
     }
   };
 
+  // Function to delete a resume
+  const deleteResume = async (resumeId: string) => {
+    if (!kv || !fs) {
+      throw new Error("Storage not available");
+    }
+
+    try {
+      // Get the resume data first to access file paths
+      const resumeData = await kv.get(`resume_analysis_${resumeId}`);
+      if (resumeData) {
+        const resume: Resume = JSON.parse(resumeData);
+
+        // Delete the files first
+        try {
+          if (resume.imagePath) {
+            await fs.delete(resume.imagePath);
+          }
+          if (resume.resumePath) {
+            await fs.delete(resume.resumePath);
+          }
+        } catch (fileError) {
+          console.warn("Error deleting files:", fileError);
+          // Continue with KV deletion even if file deletion fails
+        }
+      }
+
+      // Delete the resume analysis from KV store
+      await kv.delete(`resume_analysis_${resumeId}`);
+
+      // Refresh the list after deletion
+      await loadResumes();
+
+      return true;
+    } catch (error) {
+      console.error("Error deleting resume:", error);
+      throw error;
+    }
+  };
+
   return {
     ...state,
     refetch,
+    deleteResume,
   };
 };

@@ -104,13 +104,6 @@ export const ResumePreview: React.FC<ResumePreviewProps> = ({
                 src={imagePath}
                 alt="Resume preview"
                 className="w-full h-full object-contain"
-                onError={() => {
-                  console.log("❌ Image failed to load:", imagePath);
-                  setImageError(true);
-                }}
-                onLoad={() => {
-                  console.log("✅ Image loaded successfully");
-                }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent rounded-lg pointer-events-none" />
               <div className="absolute bottom-2 right-2 bg-black/20 text-white text-xs px-2 py-1 rounded opacity-0 hover:opacity-100 transition-opacity duration-200">

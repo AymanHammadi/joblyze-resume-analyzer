@@ -8,6 +8,7 @@ import {
 } from "react-router";
 import { I18nextProvider } from "react-i18next";
 import { useEffect } from "react";
+import { Toaster } from "sonner";
 
 import type { Route } from "./+types/root";
 import "./styles/app.css";
@@ -76,6 +77,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <script src="https://js.puter.com/v2/"></script>
 
         {children}
+        <Toaster position="bottom-right" />
         <ScrollRestoration />
         <Scripts />
       </body>
