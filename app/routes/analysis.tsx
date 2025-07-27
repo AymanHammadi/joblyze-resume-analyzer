@@ -1,4 +1,3 @@
-import React from "react";
 import { useParams, useNavigate } from "react-router";
 import { useAnalysisData } from "@/hooks/useAnalysisData";
 import {

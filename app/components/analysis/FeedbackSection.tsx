@@ -1,7 +1,6 @@
 import React from "react";
 import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { CheckCircle, AlertCircle, XCircle } from "lucide-react";
+import { CheckCircle, AlertCircle } from "lucide-react";
 
 interface FeedbackTip {
   type: "good" | "improve";

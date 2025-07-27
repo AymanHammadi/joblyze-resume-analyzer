@@ -146,9 +146,9 @@ export const DetailedFeedbackSections = ({
                         <h4 className="font-medium text-foreground">
                           {tip.tip}
                         </h4>
-                        {(tip as any).explanation && (
+                        {(tip as { explanation?: string }).explanation && (
                           <p className="text-sm text-muted-foreground leading-relaxed">
-                            {(tip as any).explanation}
+                            {(tip as { explanation?: string }).explanation}
                           </p>
                         )}
                       </div>

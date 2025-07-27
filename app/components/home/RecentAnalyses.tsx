@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { ResumeCard } from "./ResumeCard";
 import { Spinner } from "@/components/ui/spinner";
-import { FileText, RefreshCw, Trash2 } from "lucide-react";
+import { RefreshCw, Trash2 } from "lucide-react";
 import { useResumesList } from "@/hooks/useResumesList";
 import { usePuterStore } from "@/lib/puter";
 import { useState } from "react";

@@ -1,7 +1,6 @@
 import { Link } from "react-router";
-import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { FileText, Building2, Briefcase, Calendar, Clock } from "lucide-react";
+import { FileText } from "lucide-react";
 import ScoreCircle from "@/components/ScoreCircle";
 
 interface ResumeCardProps {
@@ -10,54 +9,24 @@ interface ResumeCardProps {
 }
 
 export function ResumeCard({ resume, className = "" }: ResumeCardProps) {
-  const getScoreColor = (score: number) => {
-    if (score >= 80) return "text-green-600 dark:text-green-400";
-    if (score >= 60) return "text-amber-600 dark:text-amber-400";
-    return "text-red-600 dark:text-red-400";
-  };
-
-  const getScoreGradient = (score: number) => {
-    if (score >= 80) return "from-green-500 to-emerald-500";
-    if (score >= 60) return "from-amber-500 to-orange-500";
-    return "from-red-500 to-rose-500";
-  };
-
-  const getStatus = (score: number): string => {
-    if (score >= 80) return "Excellent";
-    if (score >= 60) return "Good";
-    return "Needs Work";
-  };
-
-  const formatDate = (dateString?: string) => {
-    if (!dateString) return "Recent";
-    const date = new Date(dateString);
-    return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
-  };
-
-  const getIssuesCount = (feedback: any) => {
+  const getIssuesCount = (feedback: Feedback) => {
     const categories = [
       "ATS",
       "toneAndStyle",
       "content",
       "structure",
       "skills",
-    ];
+    ] as const;
     return categories.reduce((total, category) => {
       if (feedback[category]?.tips) {
         return (
           total +
-          feedback[category].tips.filter((tip: any) => tip.type === "improve")
-            .length
+          feedback[category].tips.filter((tip) => tip.type === "improve").length
         );
       }
       return total;
     }, 0);
   };
-
-  const resumeTitle =
-    resume.companyName && resume.jobTitle
-      ? `${resume.companyName} - ${resume.jobTitle}`
-      : resume.companyName || resume.jobTitle || "Resume Analysis";
 
   return (
     <>

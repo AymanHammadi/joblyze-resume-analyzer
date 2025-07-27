@@ -11,11 +11,6 @@ interface MobileMenuButtonProps {
   onToggle: () => void;
 }
 
-interface MobileNavProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
-
 export const DesktopActions = () => {
   const { t } = useTranslation("header");
 
@@ -59,9 +54,7 @@ export const MobileMenuButton = ({
   );
 };
 
-export const MobileNav = ({ isOpen, onClose }: MobileNavProps) => {
-  const { t } = useTranslation("header");
-
+export const MobileNav = ({ isOpen }: { isOpen: boolean }) => {
   if (!isOpen) return null;
 
   return (

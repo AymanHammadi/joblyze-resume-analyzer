@@ -1,9 +1,8 @@
 import { useUploadForm } from "@/hooks/useUploadForm";
 import { ProcessingState, UploadForm, UploadLayout } from "@/components/upload";
 import i18n from "@/i18n";
-import type { Route } from "./+types/upload";
 
-export function meta({}: Route.MetaArgs) {
+export function meta() {
   // Get translations for meta tags
   const title = i18n.t("app.title");
   const description = i18n.t("app.description");
