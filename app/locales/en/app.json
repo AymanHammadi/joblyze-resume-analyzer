@@ -1,0 +1,85 @@
+{
+  "title": "Joblyze",
+  "description": "Get instant, AI-powered resume reviews—highlight strengths, avoid pitfalls, and be ready for opportunities.",
+  "header": {
+    "logo": "Joblyze",
+    "navigation": {
+      "home": "Home",
+      "features": "Features",
+      "pricing": "Pricing",
+      "about": "About",
+      "contact": "Contact"
+    },
+    "actions": {
+      "uploadResume": "Upload Resume",
+      "signIn": "Sign In",
+      "signUp": "Sign Up"
+    },
+    "settings": {
+      "language": "Language",
+      "theme": "Theme",
+      "switchTheme": "Switch Theme",
+      "switchLanguage": "Switch Language"
+    }
+  },
+  "footer": {
+    "links": {
+      "privacyPolicy": "Privacy Policy",
+      "termsOfService": "Terms of Service",
+      "helpCenter": "Help Center",
+      "contactUs": "Contact Us"
+    },
+    "socialMedia": {
+      "followUs": "Follow Us",
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "linkedin": "LinkedIn"
+    },
+    "copyright": "Joblyze - AI Resume Analyzer. All rights reserved.",
+    "madeWith": "Made with ❤️ for job seekers"
+  },
+  "home": {
+    "hero": {
+      "title": "Enhance Your Resume with AI Power",
+      "subtitle": "Get instant feedback and improve your chances of landing your dream job",
+      "description": "Our advanced AI analyzes your resume against job requirements, providing detailed insights and recommendations to help you stand out from the competition.",
+      "cta": {
+        "upload": "Upload Your Resume",
+        "learn": "Learn More",
+        "tryDemo": "Try Demo"
+      },
+      "features": [
+        "AI-Powered Analysis",
+        "Job Match Score",
+        "Instant Feedback"
+      ],
+      "stats": {
+        "resumesAnalyzed": "Resumes Analyzed",
+        "successRate": "Success Rate",
+        "avgImprovement": "Average Improvement"
+      }
+    },
+    "recentAnalyses": {
+      "title": "Recent Analyses",
+      "subtitle": "Recently analyzed resumes",
+      "emptyState": {
+        "title": "No analyses yet",
+        "description": "Upload your first resume to start AI-powered analysis",
+        "cta": "Upload Resume"
+      },
+      "card": {
+        "score": "Score",
+        "analyzedOn": "Analyzed on",
+        "viewDetails": "View Details",
+        "reanalyze": "Re-analyze",
+        "download": "Download Report"
+      },
+      "filters": {
+        "all": "All",
+        "recent": "Recent",
+        "highScore": "High Score",
+        "needsWork": "Needs Work"
+      }
+    }
+  }
+}

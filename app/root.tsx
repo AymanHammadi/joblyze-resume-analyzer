@@ -5,15 +5,15 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useRouteLoaderData,
 } from "react-router";
-import { I18nextProvider } from 'react-i18next';
-import { useEffect } from 'react';
+import { I18nextProvider } from "react-i18next";
+import { useEffect } from "react";
 
 import type { Route } from "./+types/root";
 import "./styles/app.css";
 import "./styles/rtl.css";
-import i18n from './i18n';
+import i18n from "./i18n";
+import { usePuterStore } from "./lib/puter";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -29,27 +29,43 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  // Normalize language to prevent hydration mismatch
+  const normalizeLanguage = (lang: string) => {
+    if (!lang) return "en";
+    // Extract base language (en-US -> en, ar-SA -> ar)
+    return lang.split("-")[0];
+  };
+
+  const currentLang = normalizeLanguage(i18n.language);
+
   // Set the language and direction based on i18n
   useEffect(() => {
     const handleLanguageChange = () => {
-      const currentLang = i18n.language;
-      document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-      document.documentElement.lang = currentLang;
+      const lang = normalizeLanguage(i18n.language);
+      document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+      document.documentElement.lang = lang;
     };
 
     // Set initial values
     handleLanguageChange();
 
     // Listen for language changes
-    i18n.on('languageChanged', handleLanguageChange);
+    i18n.on("languageChanged", handleLanguageChange);
 
     return () => {
-      i18n.off('languageChanged', handleLanguageChange);
+      i18n.off("languageChanged", handleLanguageChange);
     };
   }, []);
 
+  const { init } = usePuterStore();
+
+  // Initialize Puter on component mount
+  useEffect(() => {
+    init();
+  }, [init]);
+
   return (
-    <html lang={i18n.language || 'en'} dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}>
+    <html lang={currentLang} dir={currentLang === "ar" ? "rtl" : "ltr"}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -57,6 +73,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
+        <script src="https://js.puter.com/v2/"></script>
+
         {children}
         <ScrollRestoration />
         <Scripts />

@@ -24,7 +24,7 @@ export function ThemeToggle() {
       variant="ghost"
       size="sm"
       onClick={toggleTheme}
-      className="w-10 h-10 rounded-full dark:hover:bg-primary transition-all duration-200 relative overflow-hidden cursor-pointer"
+      className="btn-ghost"
     >
       <div className="relative w-4 h-4">
         <Sun 

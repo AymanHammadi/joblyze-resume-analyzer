@@ -2,9 +2,10 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
+
 // Import translations
-import enTranslation from './locales/en/translation.json';
-import arTranslation from './locales/ar/translation.json';
+import arApp from './locales/ar/app.json';
+import enApp from './locales/en/app.json';
 
 // Initialize i18next
 i18n
@@ -17,10 +18,22 @@ i18n
     // Resources contain translations
     resources: {
       en: {
-        translation: enTranslation
+        translation: {
+          app: enApp
+        },
+        app: enApp,
+        header: enApp.header,
+        hero: enApp.home.hero,
+        recentAnalyses: enApp.home.recentAnalyses
       },
       ar: {
-        translation: arTranslation
+        translation: {
+          app: arApp
+        },
+        app: arApp,
+        header: arApp.header,
+        hero: arApp.home.hero,
+        recentAnalyses: arApp.home.recentAnalyses,
       }
     },
     // Default language
@@ -30,7 +43,9 @@ i18n
     // Detect and cache language on localStorage
     detection: {
       order: ['localStorage', 'navigator'],
-      caches: ['localStorage']
+      caches: ['localStorage'],
+      // Convert detected language to base language (en-US -> en)
+      convertDetectedLanguage: (lng: string) => lng.split('-')[0]
     },
     // Interpolation configuration
     interpolation: {

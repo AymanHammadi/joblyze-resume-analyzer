@@ -93,34 +93,34 @@ body {
 .dark {
   --background: oklch(0.08 0 0);
   --foreground: oklch(0.95 0.01 85);
-  --card: oklch(0.12 0 0);
+  --card: oklch(0.14 0.002 85);
   --card-foreground: oklch(0.95 0.01 85);
-  --popover: oklch(0.12 0 0);
+  --popover: oklch(0.14 0.002 85);
   --popover-foreground: oklch(0.95 0.01 85);
   --primary: oklch(0.72 0.12 24);
   --primary-foreground: oklch(0.08 0 0);
-  --secondary: oklch(0.15 0 0);
+  --secondary: oklch(0.18 0.002 85);
   --secondary-foreground: oklch(0.95 0.01 85);
-  --muted: oklch(0.15 0 0);
+  --muted: oklch(0.16 0.002 85);
   --muted-foreground: oklch(0.65 0.01 85);
-  --accent: oklch(0.18 0 0);
+  --accent: oklch(0.20 0.002 85);
   --accent-foreground: oklch(0.95 0.01 85);
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(0.22 0 0);
-  --input: oklch(0.18 0 0);
+  --border: oklch(0.28 0.003 85);
+  --input: oklch(0.20 0.002 85);
   --ring: oklch(0.72 0.12 24);
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.12 0 0);
+  --sidebar: oklch(0.12 0.001 85);
   --sidebar-foreground: oklch(0.95 0.01 85);
   --sidebar-primary: oklch(0.72 0.12 24);
   --sidebar-primary-foreground: oklch(0.08 0 0);
-  --sidebar-accent: oklch(0.18 0 0);
+  --sidebar-accent: oklch(0.20 0.002 85);
   --sidebar-accent-foreground: oklch(0.95 0.01 85);
-  --sidebar-border: oklch(0.22 0 0);
+  --sidebar-border: oklch(0.28 0.003 85);
   --sidebar-ring: oklch(0.72 0.12 24);
 }
 
@@ -238,23 +238,39 @@ body {
 
   /* Button Variants */
   .btn-primary {
-    @apply bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 rounded-md font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 rounded-md font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 cursor-pointer;
   }
 
   .btn-secondary {
-    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80 px-4 py-2 rounded-md font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80 px-4 py-2 rounded-md font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 cursor-pointer;
   }
 
   .btn-outline {
-    @apply border border-border text-foreground hover:bg-accent hover:text-accent-foreground px-4 py-2 rounded-md font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+    @apply border border-border text-foreground hover:bg-accent hover:text-accent-foreground px-4 py-2 rounded-md font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 cursor-pointer;
   }
 
   .btn-ghost {
-    @apply text-foreground hover:bg-accent hover:text-accent-foreground px-4 py-2 rounded-md font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+    @apply text-foreground hover:bg-accent hover:text-accent-foreground px-4 py-2 rounded-md font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 cursor-pointer;
   }
 
   .btn-link {
-    @apply text-primary underline-offset-4 hover:underline px-0 py-0 h-auto font-medium;
+    @apply text-primary underline-offset-4 hover:underline px-0 py-0 h-auto font-medium cursor-pointer;
+  }
+    .btn-shimmer {
+    @apply relative overflow-hidden;
+  }
+
+  .btn-shimmer::after {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] transition-transform duration-700;
+  }
+
+  .dark .btn-shimmer::after {
+    @apply via-white/10;
+  }
+
+  .btn-shimmer:hover::after {
+    @apply translate-x-[100%];
   }
 
   /* Input Components */
@@ -334,6 +350,8 @@ body {
     @apply animate-in slide-in-from-bottom-4 duration-300;
   }
 
+
+
   /* Focus and Interactive States */
   .focus-ring {
     @apply focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
@@ -367,5 +385,61 @@ body {
 
   .inline-code {
     @apply bg-muted px-1.5 py-0.5 rounded text-sm font-mono text-muted-foreground;
+  }
+
+  /* Enhanced Dark Mode Styles */
+  .dark .card,
+  .dark .card-sm,
+  .dark .card-lg {
+    @apply shadow-lg shadow-black/20;
+  }
+
+  .dark .card-hover:hover,
+  .dark .card-interactive:hover {
+    @apply shadow-xl shadow-black/30 border-border/60;
+  }
+
+  .dark .card-gradient {
+    @apply from-card via-card/95 to-card/90 shadow-lg shadow-black/20;
+  }
+
+  .dark .btn-outline {
+    @apply border-border/80 hover:border-border/60;
+  }
+
+  .dark .btn-ghost:hover {
+    @apply bg-accent/80;
+  }
+
+  .dark .btn-secondary {
+    @apply shadow-sm shadow-black/10;
+  }
+
+  .dark .input-field,
+  .dark .textarea-field,
+  .dark .select-field {
+    @apply border-border/80 shadow-sm shadow-black/10;
+  }
+
+  .dark .input-field:focus-visible,
+  .dark .textarea-field:focus-visible,
+  .dark .select-field:focus {
+    @apply border-border/60 shadow-md shadow-black/20;
+  }
+
+  .dark .surface {
+    @apply shadow-sm shadow-black/20;
+  }
+
+  .dark .surface-elevated {
+    @apply shadow-md shadow-black/30;
+  }
+
+  .dark .glass-effect {
+    @apply bg-background/90 border-border/60 shadow-lg shadow-black/20;
+  }
+
+  .dark .elevated {
+    @apply shadow-xl shadow-black/40 border-border/60;
   }
 }
