@@ -8,6 +8,8 @@ import arApp from './locales/ar/app.json';
 import enApp from './locales/en/app.json';
 import arUpload from './locales/ar/upload.json';
 import enUpload from './locales/en/upload.json';
+import arAnalysis from './locales/ar/analysis.json';
+import enAnalysis from './locales/en/analysis.json';
 
 // Initialize i18next
 i18n
@@ -27,7 +29,8 @@ i18n
         header: enApp.header,
         hero: enApp.home.hero,
         recentAnalyses: enApp.home.recentAnalyses,
-        upload: enUpload
+        upload: enUpload,
+        analysis: enAnalysis
       },
       ar: {
         translation: {
@@ -37,7 +40,8 @@ i18n
         header: arApp.header,
         hero: arApp.home.hero,
         recentAnalyses: arApp.home.recentAnalyses,
-        upload: arUpload
+        upload: arUpload,
+        analysis: arAnalysis
       }
     },
     // Default language

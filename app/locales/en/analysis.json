@@ -1,0 +1,33 @@
+{
+  "title": "Resume Analysis Results",
+  "subtitle": "Analysis ID",
+  "actions": {
+    "backToUpload": "Back to Upload",
+    "refresh": "Refresh",
+    "downloadReport": "Download Report"
+  },
+  "jobInfo": {
+    "title": "Job Information",
+    "company": "Company",
+    "position": "Position",
+    "overallScore": "Overall Score",
+    "notSpecified": "Not specified"
+  },
+  "resumePreview": {
+    "title": "Resume Preview",
+    "noPreview": "No preview available"
+  },
+  "rawData": {
+    "title": "Raw Analysis Data (Development View)"
+  },
+  "loading": {
+    "text": "Loading analysis..."
+  },
+  "errors": {
+    "title": "Error Loading Analysis",
+    "noId": "No analysis ID provided",
+    "notFound": "Analysis not found",
+    "loadFailed": "Failed to load analysis",
+    "tryAgain": "Try Again"
+  }
+}

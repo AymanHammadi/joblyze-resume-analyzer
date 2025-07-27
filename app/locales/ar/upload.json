@@ -57,6 +57,11 @@
     "analysisFailed": "فشل في الحصول على تحليل الذكاء الاصطناعي",
     "generalError": "فشل التحليل"
   },
+  "analysis": {
+    "processing": {
+      "title": "جارٍ تحليل سيرتك الذاتية"
+    }
+  },
   "console": {
     "formSubmitted": "تم إرسال النموذج بنجاح!"
   }

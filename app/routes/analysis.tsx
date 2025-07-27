@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
 import { ArrowLeft, Download, RefreshCw } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Header } from "@/components/Header";
@@ -14,6 +15,7 @@ interface AnalysisPageState {
 }
 
 const AnalysisPage = () => {
+  const { t } = useTranslation("analysis");
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { kv } = usePuterStore();
@@ -28,7 +30,7 @@ const AnalysisPage = () => {
     if (!id) {
       setState({
         isLoading: false,
-        error: "No analysis ID provided",
+        error: t("errors.noId"),
         analysisData: null,
       });
       return;
@@ -42,7 +44,7 @@ const AnalysisPage = () => {
       if (!result) {
         setState({
           isLoading: false,
-          error: "Analysis not found",
+          error: t("errors.notFound"),
           analysisData: null,
         });
         return;
@@ -58,8 +60,7 @@ const AnalysisPage = () => {
       console.error("Error loading analysis:", error);
       setState({
         isLoading: false,
-        error:
-          error instanceof Error ? error.message : "Failed to load analysis",
+        error: error instanceof Error ? error.message : t("errors.loadFailed"),
         analysisData: null,
       });
     }
@@ -85,7 +86,7 @@ const AnalysisPage = () => {
           <div className="container-app py-12">
             <div className="max-w-4xl mx-auto text-center">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-              <p className="text-muted-foreground">Loading analysis...</p>
+              <p className="text-muted-foreground">{t("loading.text")}</p>
             </div>
           </div>
         </div>
@@ -102,18 +103,18 @@ const AnalysisPage = () => {
             <div className="max-w-4xl mx-auto text-center space-y-4">
               <div className="p-6 bg-destructive/10 border border-destructive/20 rounded-lg">
                 <h2 className="text-xl font-semibold text-destructive mb-2">
-                  Error Loading Analysis
+                  {t("errors.title")}
                 </h2>
                 <p className="text-destructive/80">{state.error}</p>
               </div>
               <div className="space-x-4">
                 <Button onClick={handleGoBack} variant="outline">
                   <ArrowLeft className="w-4 h-4 mr-2" />
-                  Back to Upload
+                  {t("actions.backToUpload")}
                 </Button>
                 <Button onClick={handleRefresh}>
                   <RefreshCw className="w-4 h-4 mr-2" />
-                  Try Again
+                  {t("errors.tryAgain")}
                 </Button>
               </div>
             </div>
@@ -144,23 +145,25 @@ const AnalysisPage = () => {
               <div className="flex items-center gap-4">
                 <Button onClick={handleGoBack} variant="outline" size="sm">
                   <ArrowLeft className="w-4 h-4 mr-2" />
-                  Back to Upload
+                  {t("actions.backToUpload")}
                 </Button>
                 <div>
                   <h1 className="text-3xl font-bold text-foreground">
-                    Resume Analysis Results
+                    {t("title")}
                   </h1>
-                  <p className="text-muted-foreground">Analysis ID: {id}</p>
+                  <p className="text-muted-foreground">
+                    {t("subtitle")}: {id}
+                  </p>
                 </div>
               </div>
               <div className="flex gap-2">
                 <Button onClick={handleRefresh} variant="outline" size="sm">
                   <RefreshCw className="w-4 h-4 mr-2" />
-                  Refresh
+                  {t("actions.refresh")}
                 </Button>
                 <Button variant="outline" size="sm">
                   <Download className="w-4 h-4 mr-2" />
-                  Download Report
+                  {t("actions.downloadReport")}
                 </Button>
               </div>
             </div>
@@ -170,24 +173,30 @@ const AnalysisPage = () => {
               <div className="grid lg:grid-cols-3 gap-6">
                 <Card className="lg:col-span-1 p-6">
                   <h3 className="text-lg font-semibold mb-4">
-                    Job Information
+                    {t("jobInfo.title")}
                   </h3>
                   <div className="space-y-2">
                     <div>
-                      <p className="text-sm text-muted-foreground">Company</p>
-                      <p className="font-medium">
-                        {state.analysisData.companyName || "Not specified"}
+                      <p className="text-sm text-muted-foreground">
+                        {t("jobInfo.company")}
                       </p>
-                    </div>
-                    <div>
-                      <p className="text-sm text-muted-foreground">Position</p>
                       <p className="font-medium">
-                        {state.analysisData.jobTitle || "Not specified"}
+                        {state.analysisData.companyName ||
+                          t("jobInfo.notSpecified")}
                       </p>
                     </div>
                     <div>
                       <p className="text-sm text-muted-foreground">
-                        Overall Score
+                        {t("jobInfo.position")}
+                      </p>
+                      <p className="font-medium">
+                        {state.analysisData.jobTitle ||
+                          t("jobInfo.notSpecified")}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-muted-foreground">
+                        {t("jobInfo.overallScore")}
                       </p>
                       <p className="text-2xl font-bold text-primary">
                         {state.analysisData.feedback.overallScore}/100
@@ -197,7 +206,9 @@ const AnalysisPage = () => {
                 </Card>
 
                 <Card className="lg:col-span-2 p-6">
-                  <h3 className="text-lg font-semibold mb-4">Resume Preview</h3>
+                  <h3 className="text-lg font-semibold mb-4">
+                    {t("resumePreview.title")}
+                  </h3>
                   {state.analysisData.imagePath ? (
                     <div className="aspect-[3/4] max-w-md mx-auto bg-muted rounded-lg overflow-hidden">
                       <img
@@ -209,7 +220,7 @@ const AnalysisPage = () => {
                   ) : (
                     <div className="aspect-[3/4] max-w-md mx-auto bg-muted rounded-lg flex items-center justify-center">
                       <p className="text-muted-foreground">
-                        No preview available
+                        {t("resumePreview.noPreview")}
                       </p>
                     </div>
                   )}
@@ -221,7 +232,7 @@ const AnalysisPage = () => {
             {state.analysisData && (
               <Card className="p-6">
                 <h3 className="text-lg font-semibold mb-4">
-                  Raw Analysis Data (Development View)
+                  {t("rawData.title")}
                 </h3>
                 <div className="bg-muted rounded-lg p-4 overflow-auto max-h-96">
                   <pre className="text-sm text-foreground whitespace-pre-wrap">

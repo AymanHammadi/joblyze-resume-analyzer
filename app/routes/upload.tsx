@@ -13,6 +13,7 @@ import { AuthGuard } from "@/components/AuthGuard";
 import { usePuterStore } from "@/lib/puter";
 import { convertPdfToImage } from "@/lib/pdf2image";
 import { prepareInstructions, AIResponseFormat } from "../constants/index";
+import i18n from "../i18n";
 
 interface FormData {
   companyName: string;
@@ -173,6 +174,7 @@ const UploadPage = () => {
       jobTitle: formData.jobTitle,
       jobDescription: formData.jobDescription,
       AIResponseFormat,
+      language: i18n.language,
     });
 
     // Use the feedback method which is optimized for resume analysis
@@ -281,11 +283,11 @@ const UploadPage = () => {
             {/* Processing State - Show GIF and hide form */}
             {analysisState.isProcessing ? (
               <div className="text-center space-y-6">
-                <div className="max-w-md mx-auto">
+                <div className="max-w-md mx-auto flex flex-col items-center">
                   <img
                     src="/images/resume-scan.gif"
                     alt="Analyzing resume"
-                    className="w-full h-auto rounded-lg shadow-lg"
+                    className="w-64 h-auto rounded-lg shadow-lg"
                   />
                 </div>
 
