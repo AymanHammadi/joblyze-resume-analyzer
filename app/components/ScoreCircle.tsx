@@ -1,41 +1,62 @@
-const ScoreCircle = ({ score = 75 }: { score: number }) => {
-  const radius = 40;
-  const stroke = 8;
-  const normalizedRadius = radius - stroke / 2;
+const ScoreCircle = ({
+  score = 75,
+  issues = 0,
+  size = "lg",
+  showIssues = false,
+}: {
+  score: number;
+  issues?: number;
+  size?: "sm" | "md" | "lg" | "xl";
+  showIssues?: boolean;
+}) => {
+  const sizeConfig = {
+    sm: { width: 60, radius: 24, stroke: 4, textSize: "text-xs" },
+    md: { width: 80, radius: 32, stroke: 6, textSize: "text-sm" },
+    lg: { width: 100, radius: 40, stroke: 8, textSize: "text-sm" },
+    xl: { width: 120, radius: 48, stroke: 10, textSize: "text-base" },
+  };
+
+  const config = sizeConfig[size];
+  const normalizedRadius = config.radius - config.stroke / 2;
   const circumference = 2 * Math.PI * normalizedRadius;
   const progress = score / 100;
   const strokeDashoffset = circumference * (1 - progress);
 
+  // Get color based on score using theme colors
+  const getScoreColor = (score: number) => {
+    if (score >= 80) return "hsl(var(--primary))"; // Use theme primary
+    if (score >= 60) return "hsl(142 76% 36%)"; // Green
+    return "hsl(0 84% 60%)"; // Red
+  };
+
   return (
-    <div className="relative w-[100px] h-[100px]">
+    <div
+      className={`relative`}
+      style={{ width: config.width, height: config.width }}
+    >
       <svg
         height="100%"
         width="100%"
-        viewBox="0 0 100 100"
+        viewBox={`0 0 ${config.width} ${config.width}`}
         className="transform -rotate-90"
       >
         {/* Background circle */}
         <circle
-          cx="50"
-          cy="50"
+          cx={config.width / 2}
+          cy={config.width / 2}
           r={normalizedRadius}
-          stroke="#e5e7eb"
-          strokeWidth={stroke}
+          stroke="hsl(var(--border))"
+          strokeWidth={config.stroke}
           fill="transparent"
+          opacity={0.3}
         />
-        {/* Partial circle with gradient */}
-        <defs>
-          <linearGradient id="grad" x1="1" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#FF97AD" />
-            <stop offset="100%" stopColor="#5171FF" />
-          </linearGradient>
-        </defs>
+        {/* Progress circle */}
         <circle
-          cx="50"
-          cy="50"
+          cx={config.width / 2}
+          cy={config.width / 2}
           r={normalizedRadius}
-          stroke="url(#grad)"
-          strokeWidth={stroke}
+          stroke={getScoreColor(score)}
+          strokeWidth={config.stroke}
           fill="transparent"
           strokeDasharray={circumference}
           strokeDashoffset={strokeDashoffset}
@@ -43,9 +64,16 @@ const ScoreCircle = ({ score = 75 }: { score: number }) => {
         />
       </svg>
 
-      {/* Score and issues */}
+      {/* Score and Issues */}
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="font-semibold text-sm">{`${score}/100`}</span>
+        <span className={`font-semibold ${config.textSize} text-foreground`}>
+          {score}/100
+        </span>
+        {showIssues && (
+          <span className="text-xs text-muted-foreground mt-0.5">
+            {issues} issues
+          </span>
+        )}
       </div>
     </div>
   );

@@ -12,6 +12,8 @@ interface Resume {
   imagePath: string;
   resumePath: string;
   feedback: Feedback;
+  imageUrl?: string; // URL for loaded image blob
+  createdAt?: string; // Creation timestamp
 }
 
 interface Feedback {

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router";
+import { useTranslation } from "react-i18next";
 import { usePuterStore } from "@/lib/puter";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,6 +16,7 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 
 const Auth = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const { auth, isLoading, error, puterReady, clearError } = usePuterStore();
   const [isSigningIn, setIsSigningIn] = useState(false);
 
@@ -55,24 +57,16 @@ const Auth = () => {
         <ThemeToggle />
       </div>
 
-      {/* Background Pattern */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-32 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute -bottom-40 -left-32 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
-      </div>
-
       <div className="relative w-full max-w-md">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="heading-lg mb-2">Welcome to AI Resume Analyzer</h1>
+          <h1 className="heading-lg mb-2">{t("auth:welcome.title")}</h1>
         </div>
 
         <Card className="glass-effect">
           <CardHeader className="text-center pb-4">
-            <CardTitle className="text-xl">Sign In</CardTitle>
-            <CardDescription>
-              Connect with Puter to access your resume analysis dashboard
-            </CardDescription>
+            <CardTitle className="text-xl">{t("auth:signIn.title")}</CardTitle>
+            <CardDescription>{t("auth:signIn.description")}</CardDescription>
           </CardHeader>
 
           <CardContent className="space-y-6">
@@ -91,7 +85,7 @@ const Auth = () => {
               <Alert className="animate-in slide-in-from-top-2 duration-300">
                 <Spinner size="sm" />
                 <AlertDescription>
-                  Initializing Puter connection...
+                  {t("auth:loading.initializing")}
                 </AlertDescription>
               </Alert>
             )}
@@ -107,7 +101,7 @@ const Auth = () => {
                 {isSigningIn ? (
                   <>
                     <Spinner size="sm" />
-                    Signing in...
+                    {t("auth:signIn.signingIn")}
                   </>
                 ) : (
                   <>
@@ -140,7 +134,7 @@ const Auth = () => {
                         strokeLinejoin="round"
                       />
                     </svg>
-                    Sign in with Puter
+                    {t("auth:signIn.button")}
                   </>
                 )}
               </Button>
@@ -152,7 +146,7 @@ const Auth = () => {
                   onClick={() => navigate("/")}
                   className="btn-ghost"
                 >
-                  ← Back to Home
+                  {t("auth:signIn.backToHome")}
                 </Button>
               </div>
             </div>
@@ -162,7 +156,7 @@ const Auth = () => {
         {/* Footer */}
         <div className="text-center mt-8">
           <p className="text-xs text-muted-foreground">
-            By signing in, you agree to our Terms of Service and Privacy Policy
+            {t("auth:footer.termsText")}
           </p>
         </div>
       </div>

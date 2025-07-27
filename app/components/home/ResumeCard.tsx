@@ -1,8 +1,8 @@
 import { Link } from "react-router";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { FileText, Building2, Briefcase, Calendar, Clock } from "lucide-react";
 import ScoreCircle from "@/components/ScoreCircle";
-import { FileText, Eye, RotateCcw, Download } from "lucide-react";
 
 interface ResumeCardProps {
   resume: Resume;
@@ -16,106 +16,89 @@ export function ResumeCard({ resume, className = "" }: ResumeCardProps) {
     return "text-red-600 dark:text-red-400";
   };
 
-  const getStatusBadge = (score: number) => {
-    if (score >= 80)
-      return "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300";
-    if (score >= 60)
-      return "bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-300";
-    return "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300";
+  const getScoreGradient = (score: number) => {
+    if (score >= 80) return "from-green-500 to-emerald-500";
+    if (score >= 60) return "from-amber-500 to-orange-500";
+    return "from-red-500 to-rose-500";
   };
 
   const getStatus = (score: number): string => {
-    if (score >= 80) return "excellent";
-    if (score >= 60) return "good";
-    return "needs work";
+    if (score >= 80) return "Excellent";
+    if (score >= 60) return "Good";
+    return "Needs Work";
+  };
+
+  const formatDate = (dateString?: string) => {
+    if (!dateString) return "Recent";
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+  };
+
+  const getIssuesCount = (feedback: any) => {
+    const categories = [
+      "ATS",
+      "toneAndStyle",
+      "content",
+      "structure",
+      "skills",
+    ];
+    return categories.reduce((total, category) => {
+      if (feedback[category]?.tips) {
+        return (
+          total +
+          feedback[category].tips.filter((tip: any) => tip.type === "improve")
+            .length
+        );
+      }
+      return total;
+    }, 0);
   };
 
   return (
-    <Link
-      to={`/resume/${resume.id}`}
-      className={`block card-hover group ${className}`}
-    >
-      <div className="space-y-4">
-        {/* Thumbnail */}
-        <div className="relative aspect-[3/4] rounded-lg overflow-hidden bg-gradient-to-br from-muted to-muted/50">
-          {resume.imagePath ? (
-            <img
-              src={resume.imagePath}
-              alt={`Resume for ${resume.jobTitle || "position"}`}
-              className="w-full h-full object-cover"
-            />
-          ) : (
-            <div className="absolute inset-0 flex items-center justify-center">
-              <FileText className="w-16 h-16 text-muted-foreground/50" />
+    <Link to={`/analysis/${resume.id}`} className={`block ${className}`}>
+      <Card className="card-interactive flex flex-col h-[460px] w-full lg:w-[350px] xl:w-[390px] bg-white rounded-md p-4 overflow-hidden">
+        <CardContent className="p-6">
+          {/* Header Section */}
+          <div className="flex justify-between items-start gap-4 mb-4">
+            {/* Company & Job Info */}
+            <div className="flex-1 min-w-0">
+              <h3 className="heading text-xl sm:text-2xl mb-2">
+                {resume.companyName || "Resume Analysis"}
+              </h3>
+              <p className="body-text-lg line-clamp-2">
+                {resume.jobTitle || "Position Analysis"}
+              </p>
             </div>
-          )}
 
-          {/* Score Badge */}
-          <div className="absolute top-3 right-3">
-            <Badge className={getStatusBadge(resume.feedback.overallScore)}>
-              {resume.feedback.overallScore}/100
-            </Badge>
+            {/* Circular Progress Score */}
+            <div className="flex-shrink-0">
+              <ScoreCircle
+                score={resume.feedback.overallScore}
+                issues={getIssuesCount(resume.feedback)}
+                size="xl"
+                showIssues={true}
+              />
+            </div>
           </div>
-        </div>
 
-        {/* Content */}
-        <div className="space-y-3">
-          <div>
-            <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
-              {resume.companyName ? `${resume.companyName} Resume` : "Resume"}
-            </h3>
-            {resume.jobTitle && (
-              <p className="text-sm text-muted-foreground">{resume.jobTitle}</p>
+          {/* Resume Preview Section */}
+          <div className="aspect-square p-3 bg-gradient-to-b from-primary/5 to-primary/15 rounded-md shadow-inner backdrop-blur-sm flex flex-col justify-center items-center ">
+            {resume.imageUrl ? (
+              <img
+                className="w-full h-full max-sm:h-[200px] object-cover object-top rounded-md"
+                src={resume.imageUrl}
+                alt="Resume preview"
+              />
+            ) : (
+              <div className="w-full h-full rounded-md bg-muted/50 flex flex-col items-center justify-center text-muted-foreground">
+                <FileText className="w-16 h-16 mb-3" />
+                <span className="body-text font-medium">Resume Preview</span>
+                <span className="caption">No preview available</span>
+              </div>
             )}
           </div>
-
-          {/* Score Display with ScoreCircle */}
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <ScoreCircle score={resume.feedback.overallScore} />
-              <div>
-                <div className="text-sm font-medium">Overall Score</div>
-                <div
-                  className={`text-sm font-bold ${getScoreColor(
-                    resume.feedback.overallScore
-                  )}`}
-                >
-                  {getStatus(resume.feedback.overallScore)}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Actions */}
-          <div className="flex items-center gap-2">
-            <Button
-              size="sm"
-              variant="outline"
-              className="flex-1"
-              onClick={(e) => e.preventDefault()} // Prevent navigation for these actions
-            >
-              <Eye className="w-4 h-4 mr-1" />
-              View Details
-            </Button>
-            <Button
-              size="sm"
-              variant="ghost"
-              className="px-2"
-              onClick={(e) => e.preventDefault()}
-            >
-              <RotateCcw className="w-4 h-4" />
-            </Button>
-            <Button
-              size="sm"
-              variant="ghost"
-              className="px-2"
-              onClick={(e) => e.preventDefault()}
-            >
-              <Download className="w-4 h-4" />
-            </Button>
-          </div>
-        </div>
-      </div>
+        </CardContent>
+      </Card>
     </Link>
   );
 }

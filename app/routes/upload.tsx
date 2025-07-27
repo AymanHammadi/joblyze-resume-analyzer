@@ -1,10 +1,5 @@
-import React from "react";
 import { useUploadForm } from "@/hooks/useUploadForm";
-import {
-  ProcessingState,
-  UploadForm,
-  UploadLayout,
-} from "@/components/upload";
+import { ProcessingState, UploadForm, UploadLayout } from "@/components/upload";
 import i18n from "@/i18n";
 import type { Route } from "./+types/upload";
 

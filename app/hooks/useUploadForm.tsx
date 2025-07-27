@@ -198,6 +198,7 @@ export const useUploadForm = () => {
       imagePath: uploadedImage.path,
       resumePath: uploadedFile.path,
       feedback: feedbackData,
+      createdAt: new Date().toISOString(),
     };
 
     await kv.set(
@@ -249,11 +250,12 @@ export const useUploadForm = () => {
     await handleAnalyze();
   };
 
-  const isFormValid =
+  const isFormValid = !!(
     formData.companyName &&
     formData.jobTitle &&
     formData.jobDescription &&
-    formData.resumeFile;
+    formData.resumeFile
+  );
 
   return {
     formData,

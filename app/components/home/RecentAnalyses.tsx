@@ -1,11 +1,57 @@
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { ResumeCard } from "./ResumeCard";
-import { FileText } from "lucide-react";
-import { resumes } from "@/constants/index";
+import { Spinner } from "@/components/ui/spinner";
+import { FileText, RefreshCw } from "lucide-react";
+import { useResumesList } from "@/hooks/useResumesList";
+import { usePuterStore } from "@/lib/puter";
 
 export function RecentAnalyses() {
   const { t } = useTranslation("recentAnalyses");
+  const { auth } = usePuterStore();
+  const { resumes, isLoading, error, refetch } = useResumesList();
+
+  // Only show Recent Analyses for authenticated users
+  if (!auth.isAuthenticated) {
+    return null;
+  }
+
+  if (isLoading) {
+    return (
+      <section className="section-lg">
+        <div className="container-content">
+          <div className="text-center space-y-6">
+            <div className="space-y-2">
+              <h2 className="heading-lg">{t("title")}</h2>
+              <p className="body-text text-muted-foreground">{t("subtitle")}</p>
+            </div>
+            <div className="flex justify-center">
+              <Spinner size="lg" />
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="section-lg">
+        <div className="container-content">
+          <div className="text-center space-y-6">
+            <div className="space-y-2">
+              <h2 className="heading-lg">{t("title")}</h2>
+              <p className="body-text text-destructive">{error}</p>
+            </div>
+            <Button onClick={refetch} variant="outline">
+              <RefreshCw className="w-4 h-4 mr-2" />
+              Try Again
+            </Button>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   if (resumes.length === 0) {
     return (
@@ -30,40 +76,17 @@ export function RecentAnalyses() {
 
   return (
     <section className="section-lg ">
-      <div className="container-content">
+      <div className="container-app">
         <div className="space-y-8">
           {/* Section Header */}
           <div className="text-center space-y-2">
             <h2 className="heading-lg">{t("title")}</h2>
-            <p className="body-text text-muted-foreground">{t("subtitle")}</p>
           </div>
-
-          {/* Filters */}
-          <div className="flex flex-wrap items-center justify-center gap-2">
-            {["all", "recent", "highScore", "needsWork"].map((filter) => (
-              <Button
-                key={filter}
-                variant={filter === "all" ? "default" : "outline"}
-                size="sm"
-                className="text-sm"
-              >
-                {t(`filters.${filter}`)}
-              </Button>
-            ))}
-          </div>
-
           {/* Analyses Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
             {resumes.map((resume) => (
               <ResumeCard key={resume.id} resume={resume} />
             ))}
-          </div>
-
-          {/* Load More */}
-          <div className="text-center pt-8">
-            <Button variant="outline" size="lg" className="btn-outline">
-              Load More Analyses
-            </Button>
           </div>
         </div>
       </div>
