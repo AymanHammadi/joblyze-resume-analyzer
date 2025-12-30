@@ -2,7 +2,7 @@
 
 A modern web application that analyzes resumes using AI to provide detailed feedback and suggestions for improvement. Built with React Router v7 and powered by Puter.com's cloud infrastructure.
 
-## 🌟 Features
+##  Features
 
 - **AI-Powered Analysis**: Upload your resume and get comprehensive feedback on:
   - ATS (Applicant Tracking System) compatibility
@@ -16,7 +16,7 @@ A modern web application that analyzes resumes using AI to provide detailed feed
 - **Responsive Design**: Works seamlessly on desktop and mobile devices
 - **Real-time Processing**: Get instant feedback with animated loading states
 
-## 🚀 Tech Stack
+##  Tech Stack
 
 - **Frontend**: React 19, React Router v7, TypeScript
 - **Styling**: Tailwind CSS, Shadcn UI components
@@ -25,7 +25,7 @@ A modern web application that analyzes resumes using AI to provide detailed feed
 - **Internationalization**: i18next
 - **File Processing**: PDF.js for document handling
 
-## 🏗️ Project Structure
+##  Project Structure
 
 ```
 app/
@@ -43,7 +43,7 @@ app/
 └── types/             # TypeScript type definitions
 ```
 
-## 🔧 Getting Started
+##  Getting Started
 
 ### Prerequisites
 
@@ -78,7 +78,7 @@ npm run build
 npm start
 ```
 
-## 🔑 Authentication & Setup
+##  Authentication & Setup
 
 ### Using Puter.com
 
@@ -103,7 +103,7 @@ The beauty of this project is that **all backend functionality is provided by Pu
 - ✅ No AI API keys to manage
 
 
-## 🤖 Customizing AI Prompts
+##  Customizing AI Prompts
 
 The AI analysis prompts can be customized in `app/constants/index.ts`:
 
@@ -162,7 +162,7 @@ interface Feedback {
    const responseLanguage = isFrench ? 'French' : 'English';
    ```
 
-## 🌍 Internationalization
+##  Internationalization
 
 ### Adding New Languages
 
@@ -184,19 +184,16 @@ interface Feedback {
 - 🇺🇸 English (`en`)
 - 🇸🇦 Arabic (`ar`) - Full RTL support
 
-## 📝 Available Scripts
+##  Available Scripts
 
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
 - `npm start` - Start production server
 - `npm run typecheck` - Run TypeScript type checking
 
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
 
 
-## 🙏 Acknowledgments
+##  Acknowledgments
 
 - **Adrian Hajdin** ([adrianhajdin](https://github.com/adrianhajdin)) for the original AI Resume Analyzer concept and inspiration from his [ai-resume-analyzer](https://github.com/adrianhajdin/ai-resume-analyzer) project
 - **Puter.com** for providing the complete backend infrastructure
